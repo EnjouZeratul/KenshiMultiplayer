@@ -1,0 +1,10 @@
+{
+  "kenshi_path": "",
+  "inject_delay_ms": 3000,
+  "launch_without_mp": false,
+  "mp_enabled": "true",
+  "mp_role": "host",
+  "mp_host": "127.0.0.1",
+  "mp_port": 27960,
+  "client_apply_position": "true"
+}

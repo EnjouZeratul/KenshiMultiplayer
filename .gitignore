@@ -1,0 +1,29 @@
+# Build output
+build/
+bin/
+obj/
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.exp
+
+# Dependencies
+dependencies/
+third_party/
+
+# Reference files (submodules)
+reference/kenshilib/
+reference/online/
+reference/re_kenshi/
+*.zip
+*.msi
+
+# IDE
+.vs/
+*.suo
+*.user
+
+# Logs
+*.log

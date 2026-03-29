@@ -1,0 +1,6 @@
+#pragma once
+
+#define KENSHI_MP_VERSION "0.1.0"
+#define KENSHI_MP_VERSION_MAJOR 0
+#define KENSHI_MP_VERSION_MINOR 1
+#define KENSHI_MP_VERSION_PATCH 0
