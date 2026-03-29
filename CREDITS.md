@@ -6,6 +6,15 @@
 
 ## 主要参考
 
+### Kenshi Online
+
+- **项目**：[The404Studios/Kenshi-Online](https://github.com/The404Studios/Kenshi-Online)
+- **用途**：
+  - 部分位移表（RVA 偏移）参考
+  - **角色生成逻辑**：联机角色通过替代其他小队生成的方式创建，避免直接生成导致的游戏逻辑错误
+- **说明**：早期 Kenshi 联机 MOD 尝试，为本项目提供了宝贵的实现思路
+- **致谢**：感谢 The404Studios 及 Kenshi Online 贡献者，其角色生成方案解决了本项目的关键问题
+
 ### RE_Kenshi
 
 - **项目**：[BFrizzleFoShizzle/RE_Kenshi](https://github.com/BFrizzleFoShizzle/RE_Kenshi)
