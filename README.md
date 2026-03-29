@@ -15,22 +15,48 @@
 
 ## 构建
 
-需要 CMake 3.16+ 和 Visual Studio 2019/2022（或 MSVC 工具链）。
+### 前置要求
 
-**方式一：使用 build.bat**
+- CMake 3.16+
+- Visual Studio 2019/2022/2026（含 C++ 桌面开发）
+- Git（用于下载依赖）
+
+### 依赖项：miniupnp
+
+本项目使用 miniupnp 库实现 UPnP 端口转发。构建前需要下载：
+
+```bash
+cd third_party
+git clone https://github.com/miniupnp/miniupnp.git
+# 或使用预发布版本
+# curl -L https://github.com/miniupnp/miniupnp/releases/download/2.3.3/miniupnp-2.3.3.tar.gz | tar xz
+# mv miniupnp-2.3.3 miniupnp
 ```
+
+**推荐**：使用 Git 克隆（可获取最新修复）：
+```bash
+git clone https://github.com/miniupnp/miniupnp.git third_party/miniupnp
+```
+
+### 方式一：使用 build.bat（Windows）
+
+```bash
 双击运行 build.bat
 ```
 
-**方式二：手动构建**
+### 方式二：手动构建
+
 ```bash
+# 确保已下载 miniupnp 到 third_party/miniupnp
 mkdir build
 cd build
 cmake .. -G "Visual Studio 17 2022" -A x64
 cmake --build . --config Release
 ```
 
-输出文件将复制到 KenshiMultiplayer 根目录。
+输出文件将复制到 KenshiMultiplayer 根目录：
+- `KenshiMultiplayer.exe` - 启动器
+- `KenshiMP_Core.dll` - 注入 DLL
 
 ## 目录结构
 
@@ -98,3 +124,7 @@ KenshiMultiplayer/
 ## 参考与致谢
 
 详见 [CREDITS.md](CREDITS.md)。
+
+## 许可证
+
+本项目采用 **AGPL-3.0** 许可证。详见 [LICENSE](LICENSE) 文件。

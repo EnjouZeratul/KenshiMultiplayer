@@ -13,12 +13,8 @@ obj/
 dependencies/
 third_party/
 
-# Reference files (submodules)
-reference/kenshilib/
-reference/online/
-reference/re_kenshi/
-*.zip
-*.msi
+# Reference files (submodules and downloads)
+reference/
 
 # IDE
 .vs/
@@ -27,3 +23,6 @@ reference/re_kenshi/
 
 # Logs
 *.log
+
+# Cheat tables (optional - can be included if desired)
+# *.CT

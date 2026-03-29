@@ -1,0 +1,2693 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>225</ID>
+      <Description>"男儿当自强(角色信息)"</Description>
+      <Options moHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>237</ID>
+          <Description>"通过鼠标左键选取角色记录角色属性基址 (修改前先开启，记录了相应角色基址后关闭)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(address_lockHP,"kenshi_x64.exe"+6CEA99)//F3 0F 10 46 70 f3 0f 58
+define(bytes_lockHP,F3 0F 10 46 70)
+fullaccess(kenshi_x64.exe,0x1000)
+fullaccess(kenshi_x64.exe,0x1008)
+fullaccess(kenshi_x64.exe,0x1016)
+[ENABLE]
+
+assert(address_lockHP,bytes_lockHP)
+alloc(newmem_lockHP,$1000,address_lockHP)
+
+label(code_lockHP)
+label(return_lockHP)
+
+newmem_lockHP:
+
+code_lockHP:
+// 原指令 movss xmm0,[rsi+70] 表明 rsi 为角色指针，应使用 rsi 而非 rcx
+mov [kenshi_x64.exe+a00],rsi
+mov rax,[rsi+8]
+mov [kenshi_x64.exe+a08],rax
+mov rax,[rsi+10]
+mov [kenshi_x64.exe+a10],rax
+  movss xmm0,[rsi+70]
+  jmp return_lockHP
+
+address_lockHP:
+  jmp newmem_lockHP
+return_lockHP:
+
+[DISABLE]
+
+address_lockHP:
+  db bytes_lockHP
+  // movss xmm0,[rsi+70]
+
+dealloc(newmem_lockHP)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>238</ID>
+              <Description>"角色属性基址1"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>239</ID>
+              <Description>"角色属性基址2"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>kenshi_x64.exe+A08</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>240</ID>
+              <Description>"角色属性基址3"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>kenshi_x64.exe+A10</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"通过按c开属性页面记录角色属性基址 (修改前先开启，记录了相应角色基址后关闭)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(address_recordStatus,"kenshi_x64.exe"+6CED66)
+define(bytes_recordStatus,F3 0F 10 B1 94 00 00 00)
+
+fullaccess(kenshi_x64.exe,0x1000)
+fullaccess(kenshi_x64.exe,0x1008)
+fullaccess(kenshi_x64.exe,0x1016)
+
+[ENABLE]
+
+assert(address_recordStatus,bytes_recordStatus)
+alloc(newmem_recordStatus,$1000,address_recordStatus)
+
+label(code_recordStatus)
+label(return_recordStatus)
+
+newmem_recordStatus:
+
+code_recordStatus:
+mov [kenshi_x64.exe+A00],rcx
+mov rcx,[rcx+08]
+mov [kenshi_x64.exe+a08],rcx
+mov rcx,[kenshi_x64.exe+a00]
+mov rcx,[rcx+10]
+mov [kenshi_x64.exe+a10],rcx
+mov rcx,[kenshi_x64.exe+a00]
+  movss xmm6,[rcx+000000CC]
+  jmp return_recordStatus
+
+address_recordStatus:
+  jmp newmem_recordStatus
+  nop
+  nop
+  nop
+return_recordStatus:
+
+[DISABLE]
+
+address_recordStatus:
+  db bytes_recordStatus
+  // movss xmm6,[rcx+00000094]
+
+dealloc(newmem_recordStatus)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>2</ID>
+              <Description>"角色属性基址1"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>235</ID>
+              <Description>"角色属性基址2"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>kenshi_x64.exe+A08</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>236</ID>
+              <Description>"角色属性基址3"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>kenshi_x64.exe+A10</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>178</ID>
+          <Description>"角色姓名(可能会为乱码，与记录的角色基址绑定)"</Description>
+          <VariableType>String</VariableType>
+          <Length>32</Length>
+          <Unicode>0</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>kenshi_x64.exe+a00</Address>
+          <Offsets>
+            <Offset>18</Offset>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1523</ID>
+          <Description>"钱(与记录的角色基址绑定)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>kenshi_x64.exe+a00</Address>
+          <Offsets>
+            <Offset>88</Offset>
+            <Offset>80</Offset>
+            <Offset>10</Offset>
+            <Offset>10</Offset>
+          </Offsets>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1524</ID>
+              <Description>"金钱设为  10万"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_money,"kenshi_x64.exe"+5b04f5)//8B 90 88 00 00 00 89 54 24 30 48 8d 15 d2 3f bf 00
+define(bytes_money,8B 90 88 00 00 00)
+
+[ENABLE]
+
+assert(address_money,bytes_money)
+alloc(newmem_money,32,address_money)
+
+label(code_money)
+label(return_money)
+
+newmem_money:
+
+code_money:
+mov [rax+00000088], #100000
+  mov edx,[rax+00000088]
+  jmp return_money
+
+address_money:
+  jmp newmem_money
+  nop
+return_money:
+
+[DISABLE]
+
+address_money:
+  db bytes_money
+  // mov edx,[rax+00000088]
+
+dealloc(newmem_money)
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>234</ID>
+          <Description>"属性、技能(与记录的角色基址绑定)"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>4</ID>
+              <Description>"80  力量"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>80</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>249</ID>
+              <Description>"84  endurance(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>84</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>45</ID>
+              <Description>"90  韧性"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>90</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"88  灵巧性"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>88</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>44</ID>
+              <Description>"8C  知觉"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>8C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>29</ID>
+              <Description>"F8  武士刀"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>F8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>30</ID>
+              <Description>"FC  军刀"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>FC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>31</ID>
+              <Description>"100  骇客刀(砍刀)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>100</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>33</ID>
+              <Description>"108  重型武器"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>108</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>32</ID>
+              <Description>"104  钝器"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>104</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>37</ID>
+              <Description>"118  长柄刀"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>118</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>39</ID>
+              <Description>"120  近战攻击"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>120</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>40</ID>
+              <Description>"124  近战防御"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>124</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>27</ID>
+              <Description>"F0  躲闪"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>F0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>34</ID>
+              <Description>"10C  武术"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>10C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>257</ID>
+              <Description>"13C  warrior spirit(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>13C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>36</ID>
+              <Description>"114  炮塔"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>114</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>35</ID>
+              <Description>"110  十字弩"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>110</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>28</ID>
+              <Description>"F4  精准射击"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>F4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>8</ID>
+              <Description>"A0 arrow defense(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>A0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>251</ID>
+              <Description>"A4  潜行"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>A4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>11</ID>
+              <Description>"B0  撬锁"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>B0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>252</ID>
+              <Description>"B4  bluff(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>B4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>10</ID>
+              <Description>"AC  偷窃"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>AC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>13</ID>
+              <Description>"B8  暗杀"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>B8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>253</ID>
+              <Description>"Bc  survival(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>Bc</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>41</ID>
+              <Description>"94  竞技"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>94</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>9</ID>
+              <Description>"A8  游泳"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>A8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>5</ID>
+              <Description>"98  战地医生"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>98</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>250</ID>
+              <Description>"9c  mass combat(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>9c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>18</ID>
+              <Description>"C0  tracking(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>255</ID>
+              <Description>"C4  climbing(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>C4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>256</ID>
+              <Description>"C8  doctor(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>C8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>254</ID>
+              <Description>"CC  工程师"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>CC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>22</ID>
+              <Description>"DC  机器人学"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>DC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>23</ID>
+              <Description>"E0  科学"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>E0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>19</ID>
+              <Description>"D0  武器工匠"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>D0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>20</ID>
+              <Description>"D4  盔甲工匠"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>D4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>21</ID>
+              <Description>"D8  十字弩工匠"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>D8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>24</ID>
+              <Description>"E4  劳动"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>E4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"E8  耕作"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>E8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"EC  烹饪"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>EC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>258</ID>
+              <Description>"198  free attribute points(不知有没有用)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+A00</Address>
+              <Offsets>
+                <Offset>198</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>134</ID>
+          <Description>"血量 (-/+展开后还有身体各部位血量，与记录的角色基址绑定)"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <VariableType>Float</VariableType>
+          <Address>kenshi_x64.exe+a00</Address>
+          <Offsets>
+            <Offset>70</Offset>
+            <Offset>08</Offset>
+          </Offsets>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>218</ID>
+              <Description>"头部失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>0</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>219</ID>
+              <Description>"胸部失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>8</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>220</ID>
+              <Description>"腹部失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>10</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>221</ID>
+              <Description>"左臂失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>18</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>222</ID>
+              <Description>"右臂失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>20</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>223</ID>
+              <Description>"左腿失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>28</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>224</ID>
+              <Description>"右腿失血(红条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>44</Offset>
+                <Offset>30</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>142</ID>
+              <Description>"头部(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>0</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>143</ID>
+              <Description>"胸部(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>8</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>144</ID>
+              <Description>"腹部(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>10</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>145</ID>
+              <Description>"左臂(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>18</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>146</ID>
+              <Description>"右臂(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>20</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>147</ID>
+              <Description>"左腿(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>28</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>148</ID>
+              <Description>"右腿(绿条)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+a00</Address>
+              <Offsets>
+                <Offset>40</Offset>
+                <Offset>30</Offset>
+                <Offset>1a0</Offset>
+                <Offset>08</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>226</ID>
+              <Description>"身体各部位被击中概率"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>227</ID>
+                  <Description>"头部"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>0</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>228</ID>
+                  <Description>"胸部"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>8</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>229</ID>
+                  <Description>"腹部"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>10</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>230</ID>
+                  <Description>"左臂"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>18</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>231</ID>
+                  <Description>"右臂"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>20</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>232</ID>
+                  <Description>"左腿"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>28</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>233</ID>
+                  <Description>"右腿"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>kenshi_x64.exe+a00</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>30</Offset>
+                    <Offset>1a0</Offset>
+                    <Offset>08</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>150</ID>
+          <Description>"饥饿(与记录的角色基址绑定)"</Description>
+          <VariableType>Float</VariableType>
+          <Address>kenshi_x64.exe+a00</Address>
+          <Offsets>
+            <Offset>60</Offset>
+            <Offset>08</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>151</ID>
+          <Description>"昏迷时间计数(与记录的角色基址绑定)"</Description>
+          <VariableType>Float</VariableType>
+          <Address>kenshi_x64.exe+a00</Address>
+          <Offsets>
+            <Offset>a0</Offset>
+            <Offset>08</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>153</ID>
+          <Description>"犯罪时间计数(与记录的角色基址绑定)"</Description>
+          <VariableType>Float</VariableType>
+          <Address>kenshi_x64.exe+a00</Address>
+          <Offsets>
+            <Offset>180</Offset>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>122</ID>
+          <Description>"明帝内裤(锁定体型最大值1.8倍，可调倍数，力量、体质等属性破千人物也不变形，保持明帝帅姿)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(_shape,"kenshi_x64.exe"+4175E8)
+define(aob_shape,F3 0F 10 4C 24 78)
+[ENABLE]
+assert(_shape,aob_shape)
+alloc(newmem,64,_shape)
+label(returnhere)
+label(originalcode)
+label(exit)
+label(ishape)
+registersymbol(ishape)
+
+newmem: //this is allocated memory, you have read,write,execute access
+comiss xmm0,[ishape]
+jna originalcode
+movss xmm0,[ishape]
+
+originalcode:
+movss xmm1,[rsp+78]
+
+exit:
+jmp returnhere
+
+ishape:
+dd (float)1.8
+
+_shape:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+unregistersymbol(ishape)
+dealloc(newmem)
+_shape:
+db aob_shape
+//movss xmm1,[rsp+78]
+//Alt: db F3 0F 10 4C 24 78
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>339</ID>
+              <Description>"身形倍数"</Description>
+              <VariableType>Float</VariableType>
+              <Address>ishape</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>126</ID>
+          <Description>"圣火令神功(不断刷新犯罪时间、伪装暴露时间、无意识时间为0，与记录的角色基址绑定，即只有该角色能享受)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(_commitcrime,"kenshi_x64.exe"+6a5737)
+define(aob_commitcrime,0f 2f 83 90 00 00 00)
+define(_commitcrimeseen,"kenshi_x64.exe"+69f683)
+define(aob_commitcrimeseen,f3 0f 11 b3 90 00 00 00)
+define(_undercover,"kenshi_x64.exe"+6A4913)
+define(aob_undercover,0f 2f 81 10 01 00 00)
+define(_unconscious,"kenshi_x64.exe"+6d63F8)
+define(aob_unconscious,f3 0f 10 86 a0 00 00 00)
+
+[ENABLE]
+alloc(newmem,64,_commitcrime)//偷东西犯罪
+alloc(newmem1,64,_commitcrimeseen)//犯罪被一直看
+alloc(newmem2,64,_undercover)//伪装
+alloc(newmem3,64,_unconscious)//unconscious
+label(returnhere)
+label(returnhere1)
+label(returnhere2)
+label(returnhere3)
+label(originalcode)
+label(originalcode1)
+label(originalcode2)
+label(originalcode3)
+label(exit3)
+label(exit2)
+label(exit1)
+label(exit)
+label(itt)
+label(itt1)
+label(itt2)
+label(itt3)
+
+newmem:
+originalcode:
+comiss xmm0,[rbx+00000090]
+mov [itt],rbx
+mov rbx,[rbx+40]
+cmp rbx,[kenshi_x64.exe+A10]
+jne exit
+mov rbx,[itt]
+mov [rbx+90],00000000
+jmp returnhere
+exit:
+mov rbx,[itt]
+jmp returnhere
+itt:
+dd 0
+
+newmem1:
+originalcode1:
+movss [rbx+90],xmm6
+mov [itt1],rbx
+mov rbx,[rbx+40]
+cmp rbx,[kenshi_x64.exe+A10]
+jne exit1
+mov rbx,[itt1]
+mov [rbx+90],00000000
+jmp returnhere1
+exit1:
+mov rbx,[itt1]
+jmp returnhere1
+itt1:
+dd 0
+
+newmem2:
+originalcode2:
+comiss xmm0,[rcx+00000110]
+mov [itt2],rcx
+mov rcx,[rcx+10]
+cmp rcx,[kenshi_x64.exe+A10]
+jne exit2
+mov rcx,[itt2]
+mov [rcx+110],00000000
+jmp returnhere2
+exit2:
+mov rcx,[itt2]
+jmp returnhere2
+itt2:
+dd 0
+
+newmem3:
+originalcode3:
+movss xmm0,[rsi+000000a0]
+mov [itt3],r14
+mov r14,[rsi+e0]
+cmp r14,[kenshi_x64.exe+A10]
+jne exit3
+mov r14,[itt3]
+mov [rsi+a0],00000000
+jmp returnhere3
+exit3:
+mov r14,[itt3]
+jmp returnhere3
+itt3:
+dd 0
+
+_commitcrime:
+jmp newmem
+nop
+nop
+returnhere:
+
+_commitcrimeseen:
+jmp newmem1
+nop
+nop
+nop
+returnhere1:
+
+_undercover:
+jmp newmem2
+nop
+nop
+returnhere2:
+
+_unconscious:
+jmp newmem3
+nop
+nop
+nop
+returnhere3:
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+dealloc(newmem1)
+dealloc(newmem2)
+dealloc(newmem3)
+_commitcrime:
+db aob_commitcrime
+//comiss xmm0,[rbx+00000090]
+//Alt: db 0F 2F 83 90 00 00 00
+_commitcrimeseen:
+db aob_commitcrimeseen
+//movss [rbx+00000090],xmm6
+_undercover:
+db aob_undercover
+//comiss xmm0,[rcx+00000110]
+_unconscious:
+db aob_unconscious
+//f3 0f 10 86 a0 00 00 00 0f 2f c7
+//movss xmm0,[rsi+000000a0]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>248</ID>
+          <Description>"乾坤大挪移(总血量或身体各部位血量低于30(可调)时自动满血，与记录的角色基址绑定，即只有该角色能享受)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(_lockhp,"kenshi_x64.exe"+41C3B4)
+define(_lockhp1,"kenshi_x64.exe"+506021)
+define(aob_lockhp,F3 41 0F 5C 41 44)
+define(aob_lockhp1,f3 0f 5c 4b 44)
+define(hprec,(float)150)
+
+[ENABLE]
+assert(_lockhp,aob_lockhp)
+assert(_lockhp1,aob_lockhp1)
+alloc(inj_lockhp,256,_lockhp)
+label(rtn_lockhp)
+label(cht_lockhp)
+label(hpmin)
+label(tt)
+label(inj_lockhp1)
+label(rtn_lockhp1)
+label(cht_lockhp1)
+label(tt1)
+label(exit)
+label(exit1)
+label(itt)
+label(itt1)
+label(itt2)
+registersymbol(hpmin)
+
+
+inj_lockhp:
+cmp r10,[kenshi_x64.exe+a10]
+je cht_lockhp
+subss xmm0,[r9+44]
+jmp rtn_lockhp
+
+cht_lockhp:
+mov r10,[kenshi_x64.exe+a08]
+mov [r10+a0],00
+mov r10,[r10+70]
+cmp r10,[hpmin]
+jg tt
+mov r10,[kenshi_x64.exe+a08]
+mov [r10+70],hprec
+tt:
+mov r10,[kenshi_x64.exe+a10]
+subss xmm0,[r9+44]
+movss [itt],xmm0
+mov r10,[hpmin]
+cmp [itt],r10
+jbe exit
+mov r10,[kenshi_x64.exe+a10]
+movss xmm0,[r9+44]
+subss xmm0,[r9+40]
+mov r10,[itt]
+movss [itt],xmm0
+cmp [itt],r10
+jbe exit
+mov r10,[kenshi_x64.exe+a10]
+movss xmm0,[r9+40]
+subss xmm0,[r9+44]
+jmp rtn_lockhp
+exit:
+mov r10,[kenshi_x64.exe+a10]
+movss xmm0,[r9+54]
+mov [r9+44],(float)0
+movss [r9+40],xmm0
+mov [r9+48],hprec
+jmp rtn_lockhp
+
+
+inj_lockhp1:
+cmp rcx,[kenshi_x64.exe+a10]
+je cht_lockhp1
+subss xmm1,[rbx+44]
+jmp rtn_lockhp1
+
+cht_lockhp1:
+mov rcx,[kenshi_x64.exe+a08]
+mov [rcx+a0],00
+mov rcx,[rcx+70]
+cmp rcx,[hpmin]
+jg tt1
+mov rcx,[kenshi_x64.exe+a08]
+mov [rcx+70],hprec
+tt1:
+mov rcx,[kenshi_x64.exe+a10]
+subss xmm1,[rbx+44]
+movss [itt2],xmm1
+mov rcx,[hpmin]
+cmp [itt2],rcx
+jbe exit1
+mov rcx,[kenshi_x64.exe+a10]
+movss xmm1,[rbx+44]
+subss xmm1,[rbx+40]
+mov rcx,[itt2]
+movss [itt2],xmm1
+cmp [itt2],rcx
+jbe exit1
+mov rcx,[kenshi_x64.exe+a10]
+movss xmm1,[rbx+40]
+subss xmm1,[rbx+44]
+jmp rtn_lockhp1
+exit1:
+mov rcx,[kenshi_x64.exe+a10]
+movss xmm1,[rbx+54]
+mov [rbx+44],(float)0
+movss [rbx+40],xmm1
+mov [rbx+48],hprec
+jmp rtn_lockhp1
+
+itt:
+dd 0
+itt1:
+dd 0
+itt2:
+dd 0
+hpmin:
+dd (float)30
+
+_lockhp:
+jmp inj_lockhp
+nop
+rtn_lockhp:
+
+_lockhp1:
+jmp inj_lockhp1
+rtn_lockhp1:
+ 
+[DISABLE]
+unregistersymbol(hpmin)
+dealloc(inj_lockhp)
+_lockhp:
+subss xmm0,[r9+44]
+//Alt: db F3 41 0F 5C 41 44
+_lockhp1:
+db aob_lockhp1
+//Alt: subss xmm1,[rbx+44]
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1525</ID>
+              <Description>"触发自动回复的血线"</Description>
+              <VariableType>Float</VariableType>
+              <Address>hpmin</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>247</ID>
+          <Description>"久阳初现(自动修改状态面板有关属性(设为0的项目不起效)，与记录的角色基址绑定，即只有该角色能享受)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(_defspeed,"kenshi_x64.exe"+6CF9B2)
+define(aob_defspeed,F3 0F 11 87 8C 01 00 00)
+[ENABLE]
+assert(_defspeed,aob_defspeed)
+alloc(newmem,256,_defspeed)
+label(returnhere)
+label(originalcode)
+label(idefspeed)
+label(itt1)
+label(itt)
+label(flg)
+label(flg1)
+label(flg2)
+label(flg3)
+label(flg4)
+label(flg5)
+label(flg6)
+label(flg7)
+label(flg8)
+label(flg9)
+label(flg10)
+label(flg11)
+label(flg12)
+label(flg13)
+
+registersymbol(idefspeed)
+
+newmem:
+cmp rdi,[kenshi_x64.exe+a00]
+jne originalcode
+movss [rdi+18c],xmm0
+movss [itt],xmm0
+cmp [idefspeed],00000000
+je flg
+movss xmm0,[idefspeed]
+movss [rdi+18c],xmm0 //defspeed float
+movss xmm0,[itt]
+flg:
+cmp [idefspeed+04],00000000
+je flg1
+movss xmm0,[idefspeed+04]
+movss [rdi+188],xmm0 //attspeed float
+movss xmm0,[itt]
+flg1:
+cmp [idefspeed+08],00000000
+je flg2
+movss xmm0,[idefspeed+08]
+movss [rdi+1c],xmm0  //combatspeed float
+movss xmm0,[itt]
+flg2:
+cmp [idefspeed+0c],00000000
+je flg3
+movss xmm0,[idefspeed+0c]
+movss [rdi+38],xmm0  //dodge float
+movss xmm0,[itt]
+flg3:
+cmp [idefspeed+10],00000000
+je flg4
+movss xmm0,[idefspeed+10]
+movss [rdi+18],xmm0  //athletic float
+movss xmm0,[itt]
+flg4:
+cmp [idefspeed+14],00000000
+je flg5
+movss xmm0,[idefspeed+14]
+movss [rdi+20],xmm0  //meleeatt integer
+movss xmm0,[itt]
+flg5:
+cmp [idefspeed+18],00000000
+je flg6
+movss xmm0,[idefspeed+18]
+movss [rdi+24],xmm0  //meleedef integer
+movss xmm0,[itt]
+flg6:
+cmp [idefspeed+1c],00000000
+je flg7
+movss xmm0,[idefspeed+1c]
+movss [rdi+2c],xmm0  //martialart integer
+movss xmm0,[itt]
+flg7:
+cmp [idefspeed+20],00000000
+je flg8
+movss xmm0,[idefspeed+20]
+movss [rdi+28],xmm0  //indoorbonus integer
+movss xmm0,[itt]
+flg8:
+cmp [idefspeed+24],00000000
+je flg9
+movss xmm0,[idefspeed+24]
+movss [rdi+3c],xmm0  //stealth float
+movss xmm0,[itt]
+flg9:
+cmp [idefspeed+28],00000000
+je flg10
+movss xmm0,[idefspeed+28]
+movss [rdi+40],xmm0  //assasination float
+movss xmm0,[itt]
+flg10:
+cmp [idefspeed+2c],00000000
+je flg11
+movss xmm0,[idefspeed+2c]
+movss [rdi+190],xmm0 //encumbance float
+movss xmm0,[itt]
+flg11:
+cmp [idefspeed+30],00000000
+je flg12
+movss xmm0,[idefspeed+30]
+movss [rdi+48],xmm0  //attdamageeffect float
+movss xmm0,[itt]
+flg12:
+cmp [idefspeed+34],00000000
+je flg13
+movss xmm0,[idefspeed+34]
+movss [rdi+44],xmm0  //dex f0
+movss xmm0,[itt]
+flg13:
+jmp returnhere
+
+originalcode:
+movss [rdi+0000018C],xmm0
+jmp returnhere
+
+
+idefspeed:
+dd (float)7 (float)5 (float)14 (float)0 (float)0 #0 #0 #0 #0 (float)0 (float)0 (float)1 (float)1 (float)0
+itt1:
+dd 0
+itt:
+dd 0
+
+_defspeed:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+unregistersymbol(idefspeed)
+dealloc(newmem)
+_defspeed:
+db aob_defspeed
+//movss [rdi+0000018C],xmm0
+//Alt: db F3 0F 11 87 8C 01 00 00
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1526</ID>
+              <Description>"格挡速度"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1527</ID>
+              <Description>"攻击速度"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+04</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1528</ID>
+              <Description>"战斗速度"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+08</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1529</ID>
+              <Description>"躲闪"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+0c</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1530</ID>
+              <Description>"竞技"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+10</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1531</ID>
+              <Description>"近战攻击"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>idefspeed+14</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1532</ID>
+              <Description>"近战防御"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>idefspeed+18</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1533</ID>
+              <Description>"武术"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>idefspeed+1c</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1534</ID>
+              <Description>"室内加成"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>idefspeed+20</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1535</ID>
+              <Description>"潜行"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+24</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1536</ID>
+              <Description>"暗杀"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+28</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1537</ID>
+              <Description>"负重(0.01-1,1为无负重)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+2c</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1538</ID>
+              <Description>"攻击倍数加成"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+30</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1539</ID>
+              <Description>"灵巧"</Description>
+              <VariableType>Float</VariableType>
+              <Address>idefspeed+34</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>331</ID>
+          <Description>"久阳在天(直接鼠标点击要救的人或要杀的人后勾选一条项目，不与记录的角色基址绑定，用完记得取消)"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>242</ID>
+              <Description>"选中角色总血量设为  150"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_lockHP,"kenshi_x64.exe"+6C3BC9)//F3 0F 10 46 70 f3 0f 58
+define(bytes_lockHP,F3 0F 10 46 70)
+
+[ENABLE]
+
+assert(address_lockHP,bytes_lockHP)
+alloc(newmem_lockHP,$1000,address_lockHP)
+
+label(code_lockHP)
+label(return_lockHP)
+
+newmem_lockHP:
+
+code_lockHP:
+mov [rsi+70], (float)150
+  movss xmm0,[rsi+70]
+  jmp return_lockHP
+
+address_lockHP:
+  jmp newmem_lockHP
+return_lockHP:
+
+[DISABLE]
+
+address_lockHP:
+  db bytes_lockHP
+  // movss xmm0,[rsi+70]
+
+dealloc(newmem_lockHP)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>243</ID>
+              <Description>"选中角色四肢血量设为最大"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_lockHP_Full,"kenshi_x64.exe"+6D417B)  //F3 0F 10 47 40 f3 0f 5c 47 44 0f 14 c0
+define(bytes_lockHP_Full,F3 0F 10 47 40)
+
+[ENABLE]
+
+assert(address_lockHP_Full,bytes_lockHP_Full)
+alloc(newmem_lockHP_Full,$1000,address_lockHP_Full)
+
+label(code_lockHP_Full)
+label(return_lockHP_Full)
+
+newmem_lockHP_Full:
+
+code_lockHP_Full:
+//血量最大值放入eax
+mov eax, [rdi+54]
+//40实际血量
+mov [rdi+40], eax
+//44失血量
+mov [rdi+44], (float)0
+//48补血量
+mov [rdi+48], (float)0
+  movss xmm0,[rdi+40]
+  jmp return_lockHP_Full
+
+address_lockHP_Full:
+  jmp newmem_lockHP_Full
+return_lockHP_Full:
+
+[DISABLE]
+
+address_lockHP_Full:
+  db bytes_lockHP_Full
+  // movss xmm0,[rdi+40]
+
+dealloc(newmem_lockHP_Full)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>244</ID>
+              <Description>"选中角色四肢血量全  0"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_lockHP0,"kenshi_x64.exe"+6D417B)
+define(bytes_lockHP0,F3 0F 10 47 40)
+
+[ENABLE]
+
+assert(address_lockHP0,bytes_lockHP0)
+alloc(newmem_lockHP0,$1000,address_lockHP0)
+
+label(code_lockHP0)
+label(return_lockHP0)
+
+newmem_lockHP0:
+
+code_lockHP0:
+//40实际血量
+mov [rdi+40], (float)0
+//44失血量
+mov [rdi+44], (float)0
+//48补血量
+mov [rdi+48], (float)0
+  movss xmm0,[rdi+40]
+  jmp return_lockHP0
+
+address_lockHP0:
+  jmp newmem_lockHP0
+return_lockHP0:
+
+[DISABLE]
+
+address_lockHP0:
+  db bytes_lockHP0
+  // movss xmm0,[rdi+40]
+
+dealloc(newmem_lockHP0)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>245</ID>
+              <Description>"选中角色四肢血量全  -200  (杀死选中角色)"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_lockHP_M200,"kenshi_x64.exe"+6D417B)
+define(bytes_lockHP_M200,F3 0F 10 47 40)
+
+[ENABLE]
+
+assert(address_lockHP_M200,bytes_lockHP_M200)
+alloc(newmem_lockHP_M200,$1000,address_lockHP_M200)
+
+label(code_lockHP_M200)
+label(return_lockHP_M200)
+
+newmem_lockHP_M200:
+
+code_lockHP_M200:
+//40实际血量
+mov [rdi+40], (float)-200
+//44失血量
+mov [rdi+44], (float)0
+//48补血量
+mov [rdi+48], (float)0
+  movss xmm0,[rdi+40]
+  jmp return_lockHP_M200
+
+address_lockHP_M200:
+  jmp newmem_lockHP_M200
+return_lockHP_M200:
+
+[DISABLE]
+
+address_lockHP_M200:
+  db bytes_lockHP_M200
+  // movss xmm0,[rdi+40]
+
+dealloc(newmem_lockHP_M200)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>246</ID>
+              <Description>"选中角色饥饿值设为  300"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_NoHunger,"kenshi_x64.exe"+6d549F) //F3 0F 10 46 60 0f 2f f0 76 25
+define(bytes_NoHunger,F3 0F 10 46 60)
+
+[ENABLE]
+
+assert(address_NoHunger,bytes_NoHunger)
+alloc(newmem_NoHunger,$1000,address_NoHunger)
+
+label(code_NoHunger)
+label(return_NoHunger)
+
+newmem_NoHunger:
+
+code_NoHunger:
+mov [rsi+60], (float)3.0
+  movss xmm0,[rsi+60]
+  jmp return_NoHunger
+
+address_NoHunger:
+  jmp newmem_NoHunger
+return_NoHunger:
+
+[DISABLE]
+
+address_NoHunger:
+  db bytes_NoHunger
+  // movss xmm0,[rsi+60]
+
+dealloc(newmem_NoHunger)
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>273</ID>
+              <Description>"选中角色饥饿值设为  0"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_NoHunger,"kenshi_x64.exe"+6d549F) //F3 0F 10 46 60 0f 2f f0 76 25
+define(bytes_NoHunger,F3 0F 10 46 60)
+
+[ENABLE]
+
+assert(address_NoHunger,bytes_NoHunger)
+alloc(newmem_NoHunger,$1000,address_NoHunger)
+
+label(code_NoHunger)
+label(return_NoHunger)
+
+newmem_NoHunger:
+
+code_NoHunger:
+mov [rsi+60], (float)0
+  movss xmm0,[rsi+60]
+  jmp return_NoHunger
+
+address_NoHunger:
+  jmp newmem_NoHunger
+return_NoHunger:
+
+[DISABLE]
+
+address_NoHunger:
+  db bytes_NoHunger
+  // movss xmm0,[rsi+60]
+
+dealloc(newmem_NoHunger)
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>276</ID>
+              <Description>"选中角色昏迷时间设为  999"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_lockHP,"kenshi_x64.exe"+6D3BC9)//F3 0F 10 46 70 f3 0f 58 05 7a 6a aa 00
+define(bytes_lockHP,F3 0F 10 46 70)
+
+[ENABLE]
+
+assert(address_lockHP,bytes_lockHP)
+alloc(newmem_lockHP,$1000,address_lockHP)
+
+label(code_lockHP)
+label(return_lockHP)
+
+newmem_lockHP:
+
+code_lockHP:
+mov [rsi+a0], (float)1002
+  movss xmm0,[rsi+70]
+  jmp return_lockHP
+
+address_lockHP:
+  jmp newmem_lockHP
+return_lockHP:
+
+[DISABLE]
+
+address_lockHP:
+  db bytes_lockHP
+  // movss xmm0,[rsi+70]
+
+dealloc(newmem_lockHP)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>277</ID>
+              <Description>"选中角色昏迷时间设为  0"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_lockHP,"kenshi_x64.exe"+6D3BC9)//F3 0F 10 46 70 f3 0f 58 05 7a 6a aa 00
+define(bytes_lockHP,F3 0F 10 46 70)
+
+[ENABLE]
+
+assert(address_lockHP,bytes_lockHP)
+alloc(newmem_lockHP,$1000,address_lockHP)
+
+label(code_lockHP)
+label(return_lockHP)
+
+newmem_lockHP:
+
+code_lockHP:
+mov [rsi+a0], (float)0
+  movss xmm0,[rsi+70]
+  jmp return_lockHP
+
+address_lockHP:
+  jmp newmem_lockHP
+return_lockHP:
+
+[DISABLE]
+
+address_lockHP:
+  db bytes_lockHP
+  // movss xmm0,[rsi+70]
+
+dealloc(newmem_lockHP)
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>340</ID>
+          <Description>"明帝：我不要你觉得，我要我觉得(设置经验倍数、快速建造、建造无需材料、肢解概率、悬赏金、帮派好感)"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>118</ID>
+              <Description>"设置经验倍数(预设5倍经验，可调倍数，与记录的角色基址绑定，即只有该角色能享受)"</Description>
+              <Options moHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(_exp,"kenshi_x64.exe"+7023B4)
+define(aob_exp,F3 0F 11 19 0f 28 c3)
+[ENABLE]
+assert(_exp,aob_exp)
+alloc(newmem,256,_exp)
+label(returnhere)
+label(originalcode)
+label(iexp)
+label(itt1)
+label(itt)
+registersymbol(iexp)
+
+newmem: //this is allocated memory, you have read,write,execute access
+mov [itt],rcx
+mov rcx,[rsi+1f0]
+cmp rcx,[kenshi_x64.exe+A00]
+jne originalcode
+mov rcx,[itt]
+subss xmm3, [rcx]
+mulss xmm3,[iexp]
+addss xmm3, [rcx]
+movss [rcx],xmm3
+movaps xmm0,xmm3
+jmp returnhere
+originalcode:
+mov rcx,[itt]
+movss [rcx],xmm3
+movaps xmm0,xmm3
+jmp returnhere
+
+iexp:
+dd (float)5.0
+
+itt1:
+dd 0
+itt:
+dd 0
+
+_exp:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+unregistersymbol(iexp)
+dealloc(newmem)
+_exp:
+db aob_exp
+
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>338</ID>
+                  <Description>"经验倍数"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>iexp</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>119</ID>
+              <Description>"建造无需材料"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(_buildnomaterial,"kenshi_x64.exe"+43090A)
+define(aob_buildnomaterial,F3 0F 10 48 0C)
+
+[ENABLE]
+assert(_buildnomaterial,aob_buildnomaterial)
+alloc(newmem,64,_buildnomaterial)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+movss xmm1,[rax+08]
+movss [rax+0c],xmm1
+
+exit:
+jmp returnhere
+
+_buildnomaterial:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+_buildnomaterial:
+db aob_buildnomaterial
+//movss xmm1,[rax+0C]
+//Alt: db F3 0F 10 48 0C
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>120</ID>
+              <Description>"快速建造 "</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(_fastbuild,"kenshi_x64.exe"+43FC7A)
+define(aob_fastbuild,F3 0F 10 86 8C 01 00 00)
+
+[ENABLE]
+assert(_fastbuild,aob_fastbuild)
+alloc(newmem,64,_fastbuild)
+label(returnhere)
+label(originalcode)
+label(exit)
+label(exit2)
+
+newmem: //this is allocated memory, you have read,write,execute access
+
+originalcode:
+movss xmm0,[rsi+0000018C]
+movss xmm0,[exit2]
+
+exit:
+jmp returnhere
+
+exit2:
+dd (float)0.99
+
+_fastbuild:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+_fastbuild:
+db aob_fastbuild
+//movss xmm0,[rsi+0000018C]
+//Alt: db F3 0F 10 86 8C 01 00 00
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>121</ID>
+              <Description>"极大提升肢解概率"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(_cutlimb,"kenshi_x64.exe"+507341)
+define(aob_cutlimb,41 0F 57 C7 0F 2F 47 40)
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,128,_cutlimb)
+label(returnhere)
+label(originalcode)
+label(exit)
+label(exit2)
+
+newmem: //this is allocated memory, you have read,write,execute access
+cmp byte [rdi+32],1
+jne originalcode
+movss [exit2+4],xmm0
+movss xmm0,[exit2]
+movss [rdi+3c],xmm0
+movss xmm0,[exit2+4]
+
+
+originalcode:
+xorps xmm0,xmm15
+comiss xmm0,[rdi+40]
+
+exit:
+jmp returnhere
+
+exit2:
+dd (float)0.10 (float)1.11
+
+_cutlimb:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+_cutlimb:
+db aob_cutlimb
+//xorps xmm0,xmm15
+//comiss xmm0,[rdi+40]
+//Alt: db 41 0F 57 C7 0F 2F 47 40
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>49</ID>
+              <Description>"选中角色如有悬赏设为1(预设1，可调悬赏金)"</Description>
+              <Options moHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_payCrime,"kenshi_x64.exe"+6a6130)//8B 51 18 48 8B 09 41
+define(bytes_payCrime,8B 51 18 48 8B 09)
+
+[ENABLE]
+
+assert(address_payCrime,bytes_payCrime)
+alloc(newmem_payCrime,$1000,address_payCrime)
+
+label(code_payCrime)
+label(return_payCrime)
+label(icrimemoney)
+label(itt1)
+label(itt)
+registersymbol(icrimemoney)
+
+newmem_payCrime:
+
+code_payCrime:
+  mov [itt],rcx
+  mov rcx,[rcx+18]
+  mov rcx, [icrimemoney]
+  mov rcx,[itt]
+  mov edx,[rcx+18]
+  mov rcx,[rcx]
+  jmp return_payCrime
+icrimemoney:
+dd #1
+itt1:
+dd 0
+itt:
+dd 0
+
+address_payCrime:
+  jmp newmem_payCrime
+  nop
+return_payCrime:
+
+[DISABLE]
+unregistersymbol(icrimemoney)
+address_payCrime:
+  db bytes_payCrime
+  // mov edx,[rcx+18]
+  // mov rcx,[rcx]
+
+dealloc(newmem_payCrime)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>341</ID>
+                  <Description>"设置悬赏金"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>icrimemoney</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>344</ID>
+              <Description>"帮派好感设为50(可调好感值，暂停开启脚本右键攻击要加好感的势力的人，右键点两次)"</Description>
+              <Options moHideChildren="1"/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>define(address_relation,"kenshi_x64.exe"+554D20)//F3 0F 10 68 04 48 8d 50 04
+define(bytes_relation,F3 0F 10 68 04)
+
+[ENABLE]
+
+assert(address_relation,bytes_relation)
+alloc(newmem_relation,64,address_relation)
+
+label(code_relation)
+label(return_relation)
+label(itt1)
+label(itt)
+label(irelation)
+registersymbol(irelation)
+
+newmem_relation:
+  cmp rbp,[kenshi_x64.exe+A10]
+  jne code_relation
+  movss [itt],xmm5
+  movss xmm5,[irelation]
+  movss [rax+04],xmm5
+  movss xmm5,[itt]
+code_relation:
+  movss xmm5,[rax+04]
+  jmp return_relation
+irelation:
+dd (float)50
+itt1:
+dd 0
+itt:
+dd 0
+
+address_relation:
+  jmp newmem_relation
+return_relation:
+
+[DISABLE]
+unregistersymbol(irelation)
+address_relation:
+  db bytes_relation
+  // movss xmm5,[rax+04]
+
+dealloc(newmem_relation)
+
+//"kenshi_x64.exe"+54f320 f3 0f 10 70 04 48 8d
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>345</ID>
+                  <Description>"预设好感值"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>irelation</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>278</ID>
+      <Description>"装备自己强(物品信息)"</Description>
+      <Options moHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>115</ID>
+          <Description>"男儿当自强，装备自己强(点击一次要修改的装备)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>define(_itemnum,"kenshi_x64.exe"+5A195E)
+define(aob_itemnum,83 B8 2C 01 00 00 01)
+fullaccess(kenshi_x64.exe,0x0900)
+[ENABLE]
+assert(_itemnum,aob_itemnum)
+alloc(newmem,128,_itemnum)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+
+originalcode:
+mov [kenshi_x64.exe+900],rsi
+//mov [rsi+228],3f800000
+//mov [rsi+22c],3f800000
+//mov [rsi+238],00000000
+cmp dword ptr [rsi+0000012C],01
+
+exit:
+jmp returnhere
+
+_itemnum:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+_itemnum:
+db aob_itemnum
+//cmp dword ptr [rsi+0000012C],01
+//Alt: db 83 B8 2C 01 00 00 01
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>279</ID>
+          <Description>"物品名称1(有时都是乱码)"</Description>
+          <VariableType>String</VariableType>
+          <Length>32</Length>
+          <Unicode>0</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>kenshi_x64.exe+900</Address>
+          <Offsets>
+            <Offset>28</Offset>
+            <Offset>40</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>280</ID>
+          <Description>"物品名称2(有时都是乱码)"</Description>
+          <VariableType>String</VariableType>
+          <Length>32</Length>
+          <Unicode>0</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>kenshi_x64.exe+900</Address>
+          <Offsets>
+            <Offset>0</Offset>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>281</ID>
+          <Description>"物品重量"</Description>
+          <VariableType>Float</VariableType>
+          <Address>kenshi_x64.exe+900</Address>
+          <Offsets>
+            <Offset>120</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>282</ID>
+          <Description>"物品数量"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>kenshi_x64.exe+900</Address>
+          <Offsets>
+            <Offset>12c</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>332</ID>
+          <Description>"弩属性相关"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>284</ID>
+              <Description>"武器品质(20/40/60/80/95(弩)100(装备))(这项对武器没用,改个颜色而已)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>224</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>285</ID>
+              <Description>"失血速度"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>228</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>286</ID>
+              <Description>"射程范围"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>8</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>287</ID>
+              <Description>"需要技能"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>c</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>288</ID>
+              <Description>"精度误差"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>10</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>289</ID>
+              <Description>"射出飞行速度"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>290</ID>
+              <Description>"重装时间(小)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>24</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>291</ID>
+              <Description>"重装时间(大)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>28</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>292</ID>
+              <Description>"伤害(小)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>118</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>293</ID>
+              <Description>"伤害(大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>11c</Offset>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>333</ID>
+          <Description>"武器属性相关"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>295</ID>
+              <Description>"武器品质(20/40/60/80/95(弩))(这项对武器没用,改个颜色而已)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>224</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>296</ID>
+              <Description>"失血"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>228</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>297</ID>
+              <Description>"切割伤害"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>240</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>298</ID>
+              <Description>"钝器伤害"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>244</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>299</ID>
+              <Description>"攻击加成(整数，为负整数时会变得很大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>22c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>300</ID>
+              <Description>"防御加成(整数，为负整数时会变得很大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>24c</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>334</ID>
+          <Description>"装备属性相关"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>302</ID>
+              <Description>"装备品质(20/40/60/80/100(装备),单改这项,存档再载入,装备属性会变成改后等级的默认数值)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>224</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>303</ID>
+              <Description>"钝器抵抗"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>22c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>304</ID>
+              <Description>"切割抵抗"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>228</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>305</ID>
+              <Description>"切割抵抗效果(0-1,越小越好)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>238</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>306</ID>
+              <Description>"鱼叉抵抗"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>230</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>307</ID>
+              <Description>"运动效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>248</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>308</ID>
+              <Description>"近战攻击加成(整数，为负整数时会变得很大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>24c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>309</ID>
+              <Description>"近战防御加成(整数，为负整数时会变得很大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>250</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>310</ID>
+              <Description>"知觉加成(整数，为负整数时会变得很大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>254</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>311</ID>
+              <Description>"战斗速度效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>258</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>312</ID>
+              <Description>"潜行效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>25c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>313</ID>
+              <Description>"暗杀技能"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>260</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>314</ID>
+              <Description>"敏捷效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>264</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>315</ID>
+              <Description>"攻击伤害效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>268</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>316</ID>
+              <Description>"躲避技能效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>26c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>317</ID>
+              <Description>"武术加成(整数，为负整数时会变得很大)"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>270</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>318</ID>
+              <Description>"拳头保护(0-1,越小越好)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>274</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>319</ID>
+              <Description>"防酸或防xx(慎改！仅原有防xx的装备才改)"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>278</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>320</ID>
+              <Description>"十字弩效果"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>27c</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>335</ID>
+          <Description>"箭矢相关"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>322</ID>
+              <Description>"最大射击次数"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>114</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>323</ID>
+              <Description>"目前可射击次数"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>118</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>336</ID>
+          <Description>"医疗包相关"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>325</ID>
+              <Description>"最大使用量"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>114</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>326</ID>
+              <Description>"目前可使用量"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>118</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>327</ID>
+              <Description>"品质"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>11c</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>337</ID>
+          <Description>"食物相关"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>329</ID>
+              <Description>"最大可食用量"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>114</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>330</ID>
+              <Description>"目前可食用量"</Description>
+              <VariableType>Float</VariableType>
+              <Address>kenshi_x64.exe+900</Address>
+              <Offsets>
+                <Offset>118</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1522</ID>
+      <Description>"[X] 开启CE简洁模式"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+LuaCall(function cycleFullCompact(sender,force) local state = not(compactmenuitem.Caption == 'Compact View Mode'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact View Mode' or 'Full View Mode'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible    = state; getMainForm().Panel5.Visible    = state; end; function addCompactMenu() if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact View Mode'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true))
+[DISABLE]
+LuaCall(cycleFullCompact(nil,false))
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
